@@ -11,6 +11,10 @@ app.get('/',(req,res)=>{
     res.send("My API is running. . .")
 })
 
+app.post('/login',(req, res)=>{
+    res.json(req)
+})
+
 app.get('/api/notes',(req, res)=>{
     res.json(notes)
 })
