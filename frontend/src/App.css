@@ -1,9 +1,12 @@
-.header{
-  min-height: 5vh;
-  background-color: whitesmoke;  
-}
-
 .dashboard{
   min-height: 95vh;
   background-color: lightgrey;
+}
+
+.modal.show  {
+  display:flex!important;
+  flex-direction:column;
+  justify-content:center;
+  align-content:center;
+  align-items: flex-start;
 }
