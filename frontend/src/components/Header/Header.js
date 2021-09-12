@@ -10,7 +10,7 @@ console.log("🚀 ~ file: Header.js ~ line 6 ~ Header ~ props", props)
     }
 
     return (
-        <Navbar>
+        <Navbar className="shadow-sm bg-white">
             <Container>
                 <Navbar.Brand>
                     <img
