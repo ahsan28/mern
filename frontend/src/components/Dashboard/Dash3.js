@@ -2,13 +2,10 @@ import React from "react";
 import { Card, Row } from "react-bootstrap";
 import CanvasJSReact from './../../../src/canvasjs.react'
 
-import { MDBCard, MDBCardTitle, MDBBtn, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
-
-const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function Dash3 ({user, userTasks, setUserTasks}) {
-    const completed = userTasks.filter(x=>x.isDone).length
+    const completed = userTasks.filter(x=>x?.isDone).length
     const total = userTasks.length
     const options = {
         exportEnabled: false,
@@ -35,7 +32,7 @@ export default function Dash3 ({user, userTasks, setUserTasks}) {
         <Card.Body>
           <Card.Title>Task Completed</Card.Title>
           <h1 className="text-primary" style={{ float: "left" }}>
-            {userTasks.filter(x=>x.isDone).length}
+            {userTasks.filter(x=>x?.isDone).length}
           </h1>
           <span className="pt-3">/{userTasks?.length ?? 0}</span>
         </Card.Body>
@@ -46,7 +43,7 @@ export default function Dash3 ({user, userTasks, setUserTasks}) {
           <Card.Title>Latest Created Tasks</Card.Title>
           <ul>
             {userTasks.sort((a,b)=>(new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 3).map((x) => (
-              <li>{x.isDone? <del>{x.name}</del>:x.name}</li>
+              <li>{x?.isDone? <del>{x?.name}</del>:x?.name}</li>
             ))}
           </ul>
         </Card.Body>

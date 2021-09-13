@@ -11,17 +11,15 @@ import { useEffect, useState } from 'react';
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userTasks, setUserTasks] = useState(null);
-  console.log("🚀 ~ file: App.js ~ line 11 ~ App ~ currentUser", currentUser)
-  console.log("🚀 ~ file: App.js ~ line 12 ~ App ~ userTasks", userTasks)
-
+  console.log("🚀 ~ file: App.js ~ line 14 ~ App ~ userTasks", userTasks)
+  
   useEffect(() => {
+    // localStorage.clear()
     let user = JSON.parse(localStorage.getItem("currentUser"))
-    console.log("🚀 ~ file: App.js ~ line 17 ~ useEffect ~ user", user)
     if (user) {
       setCurrentUser(user)
       let localTasks = "tasks-"+user.id+user.name
       let tasks = JSON.parse(localStorage.getItem(localTasks))
-      console.log("🚀 ~ file: App.js ~ line 29 ~ useEffect ~ tasks", tasks)
       if (tasks) setUserTasks(tasks)
     }
     for (var key in localStorage){

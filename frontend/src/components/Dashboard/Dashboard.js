@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 
-import AddTaskForm from "./AddTaskForm";
+import TaskForm from "./TaskForm";
 import EmptyDash from "./EmptyDash";
 import DashList from "./DashList";
 import SearchBar from "./SearchBar";
@@ -9,6 +9,8 @@ import Dash3 from "./Dash3";
 
 const Dashboard = ({user, userTasks, setUserTasks}) => {
   const [addNew, setAddNew] = useState(false);
+  const [id, setId] = useState("");
+  const [q, setQ] = useState("");
 
   useEffect(() => {}, []);
 
@@ -22,29 +24,32 @@ const Dashboard = ({user, userTasks, setUserTasks}) => {
             setUserTasks={setUserTasks}
           />
           <SearchBar
+            setQ={setQ}
             setAddNew={setAddNew}
-            user={user}
-            userTasks={userTasks}
-            setUserTasks={setUserTasks}
           />
           <DashList
+            q={q}
             user={user}
+            setId={setId}
+            setAddNew={setAddNew}
             userTasks={userTasks}
             setUserTasks={setUserTasks}
           />
         </Container>
       ) : (
         <EmptyDash
+        user={user}
           setAddNew={setAddNew}
-          user={user}
           userTasks={userTasks}
           setUserTasks={setUserTasks}
         />
       )}
-      <AddTaskForm
+      <TaskForm
+        id={id}
+        user={user}
+        setId={setId}
         addNew={addNew}
         setAddNew={setAddNew}
-        user={user}
         userTasks={userTasks}
         setUserTasks={setUserTasks}
       />
