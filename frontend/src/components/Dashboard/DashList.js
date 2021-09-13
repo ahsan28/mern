@@ -26,7 +26,7 @@ export default function DashList({ user, userTasks, setUserTasks, q, setId, setA
   const [checked, setChecked] = useState(userTasks.filter((x) => x?.isDone));
 
 
-  const handleToggle2 = (value) => () => {
+  const handleToggle = (value) => () => {
     value.isDone = !value?.isDone;
 
     const currentIndex = checked.indexOf(value);
@@ -55,7 +55,7 @@ export default function DashList({ user, userTasks, setUserTasks, q, setId, setA
             tabIndex={-1}
             disableRipple
             inputProps={{ "aria-labelledby": labelId }}
-            onClick={handleToggle2(value)}
+            onClick={handleToggle(value)}
           />
         </ListItemIcon>
         <ListItemText
@@ -75,12 +75,14 @@ export default function DashList({ user, userTasks, setUserTasks, q, setId, setA
           </IconButton>
           <IconButton edge="end" aria-label="comments">
             <MdDelete
-              onClick={() =>
+              onClick={() =>{
                 setUserTasks((p) => {
                   let val = Object.assign([], p);
                   val = val.filter((x) => x.id !== value?.id);
+                  localStorage.setItem("tasks-" + user.id + user.name, JSON.stringify(val))
                   return val;
                 })
+              }
               }
             />
           </IconButton>

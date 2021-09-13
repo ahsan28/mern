@@ -11,7 +11,6 @@ import { useEffect, useState } from 'react';
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userTasks, setUserTasks] = useState(null);
-  console.log("🚀 ~ file: App.js ~ line 14 ~ App ~ userTasks", userTasks)
   
   useEffect(() => {
     // localStorage.clear()
@@ -24,7 +23,7 @@ const App = () => {
     }
     for (var key in localStorage){
       console.log("-- "+ key)
-   }
+    }
   }, []);
   
   return (

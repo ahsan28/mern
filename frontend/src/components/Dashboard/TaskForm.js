@@ -59,7 +59,7 @@ export default function  TaskForm ({addNew, setAddNew, user, userTasks, setUserT
               <Input
                 type="name"
                 placeholder="Task Name"
-                value={task?.name||(userTasks.find(x=>x?.id===id))?.name}
+                value={task?.name||(userTasks?.find(x=>x?.id===id))?.name}
                 onChange={(e) =>
                   setTask({ 
                       id: id || Math.ceil(Math.random()*1000000),
