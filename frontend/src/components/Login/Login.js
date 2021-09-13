@@ -5,15 +5,17 @@ import { Link } from "react-router-dom";
 const Login = (props) => {
   const [show, setShow] = useState(true);
 
+  const [user, setUser] = useState(props.currentUser);
 
-  const [user, setUser] = useState({
-    id: "",
-    name: "",
-  });
-
+  console.log("🚀 ~ file: Login.js ~ line 10 ~ Login ~ user", user);
   const submit = (e) => {
     props.setCurrentUser(user);
     localStorage.setItem("currentUser", JSON.stringify(user));
+    let localTasks = "tasks-"+user.id+user.name
+    let tasks = JSON.parse(localStorage.getItem(localTasks));
+    console.log("🚀 ~ file: Login.js ~ line 18 ~ submit ~ tasks", tasks)
+    if (tasks) props.setUserTasks(tasks)
+    
     // e.preventDefault()
     // fetch('/login', {
     //   method: 'POST',
@@ -24,12 +26,11 @@ const Login = (props) => {
     //   .then(json => setUser(json.user))
   };
 
-
   return (
     <>
       <Modal
         show={show}
-        onHide={()=>setShow(false)}
+        onHide={() => setShow(false)}
         backdrop="static"
         keyboard={false}
       >
@@ -41,7 +42,14 @@ const Login = (props) => {
             <Form.Group className="mb-3" controlId="formBasicId">
               <Form.Control
                 type="id"
-                placeholder="Id"
+                placeholder="Id (only numbers)"
+                // pattern="[0-9]*"
+                onKeyPress={(e) => {
+                console.log("🚀 ~ file: Login.js ~ line 46 ~ Login ~ e", e)
+                    if (!/[0-9]/.test(e.key) || user?.id?.length>=3) {
+                      e.preventDefault();
+                    }
+                  }}
                 onChange={(e) => setUser({ ...user, id: e.target.value })}
               />
             </Form.Group>

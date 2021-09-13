@@ -12,3 +12,24 @@
   align-content:center;
   align-items: flex-start;
 }
+
+.grid {
+  min-height: -webkit-calc(100vh - 56px);
+  min-height: -moz-calc(100vh - 56px);
+  min-height: calc(100vh - 56px);
+  display: grid;
+  place-items: center;
+}
+
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+.mr-auto, .mx-auto {
+  margin-right: auto!important;
+}
+
+.pr-2 {
+  padding-right: .5rem!important;
+}

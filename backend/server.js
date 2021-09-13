@@ -11,7 +11,7 @@ app.get('/',(req,res)=>{
     res.send("My API is running. . .")
 })
 
-app.post('/login',(req, res)=>{
+app.post('/tasks',(req, res)=>{
     res.json(req)
 })
 

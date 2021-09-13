@@ -3,10 +3,10 @@ import { Container, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const Header = (props) => {
-console.log("🚀 ~ file: Header.js ~ line 6 ~ Header ~ props", props)
     const logout = () => {
         props.setCurrentUser(false)
         localStorage.clear()
+        // localStorage.setItem("currentUser", JSON.stringify(false));
     }
 
     return (
