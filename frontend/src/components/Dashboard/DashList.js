@@ -43,7 +43,7 @@ export default function DashList({ user, userTasks, setUserTasks, q, setId, setA
     setChecked(newChecked);
   };
 
-  const taskList = userTasks.filter(x=>(q? x.name.includes(q):true)).map((value, index) => {
+  const taskList = userTasks.filter(x=>(q? x.name.toLowerCase().includes(q.toLowerCase()):true)).map((value, index) => {
     const labelId = `checkbox-list-label-${value?.id}`;
 
     return (
