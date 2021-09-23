@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
-// import { Button, Form, Modal } from "react-bootstrap";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+import { TextField } from "@mui/material";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import UserApi from '../../api/user.api'
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const Login = (props) => {
   const [show, setShow] = useState(true);
-  const [user, setUser] = useState(props.currentUser);
+  const [user, setUser] = useState(null);
 
   const submit = (e) => {
     props.setCurrentUser(user);
     localStorage.setItem("currentUser", JSON.stringify(user));
     let localTasks = "tasks-" + user.id + user.name;
     let tasks = JSON.parse(localStorage.getItem(localTasks));
-    props.setUserTasks(tasks?.filter(x=>x) || []);
+    props.setUserTasks(tasks?.filter((x) => x) || []);
   };
 
-  return (<h2>Login</h2>)
   // return (
   //   <Modal
   //     show={show}
@@ -56,6 +68,73 @@ const Login = (props) => {
   //     </Modal.Body>
   //   </Modal>
   // );
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleChange = (e) => {
+    setUser({...user, [e.target.id]:e.target.value})
+    console.log("🚀 ~ file: Login.js ~ line 87 ~ handleChange ~ user", user)
+  };
+  
+  const handleClose = (e) => {
+    console.log("🚀 ~ file: Login.js ~ line 86 ~ handleChange ~ user", user)
+    
+    e.preventDefault()
+    setOpen(false);
+    UserApi.comboLogin(user).then(res=>{
+      props.reloadUser()
+    }).catch(err=>{
+    })
+
+
+  };
+
+  return (
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Slide in alert dialog
+      </Button>
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        // onClose={handleClose}
+        aria-describedby="login"
+      >
+        <DialogContent>
+          <Box sx={{ display: "grid", gridTemplateRows: "repeat(3, 1fr)" }}>
+            <Box sx={{ textAlign: 'center', m: 1 }}><h3>Login</h3></Box>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="id"
+              label="Id"
+              type="id"
+              fullWidth
+              variant="standard"
+              onChange={handleChange}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Name"
+              type="email"
+              fullWidth
+              onChange={handleChange}
+              variant="standard"
+            />
+            <Button className="rounded" variant="primary" onClick={handleClose}>
+              Login
+            </Button>
+          </Box>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
 };
 
 export default Login;

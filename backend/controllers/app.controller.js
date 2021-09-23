@@ -1,12 +1,4 @@
 
-const login = async (req, res) => {
-    try {
-
-        res.status(200).json("Login backend")
-    } catch (error) {
-        res.status(404).json({message: error.message})
-    }
-}
 
 const home = async (req, res) => {
     try {
@@ -17,8 +9,7 @@ const home = async (req, res) => {
 }
 
 const functions = {
-    login,
-    home
+    home,
 }
 
 export default functions;

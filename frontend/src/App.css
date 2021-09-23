@@ -1,8 +1,20 @@
+body {
+  background-color: #f4f4f6;
+}
+
 .dashboard{
   min-height: -webkit-calc(100vh - 56px);
   min-height: -moz-calc(100vh - 56px);
   min-height: calc(100vh - 56px);
   background-color: #f4f4f6;
+}
+
+.center-inside {
+  min-height: -webkit-calc(100vh - 56px);
+  min-height: -moz-calc(100vh - 56px);
+  min-height: calc(100vh - 56px);
+  display: grid;
+  place-items: center;
 }
 
 .modal.show  {

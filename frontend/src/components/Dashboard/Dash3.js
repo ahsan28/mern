@@ -1,5 +1,4 @@
 import React from "react";
-import { Card, Row } from "react-bootstrap";
 import CanvasJSReact from './../../../src/canvasjs.react'
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -26,32 +25,35 @@ export default function Dash3 ({user, userTasks, setUserTasks}) {
             ]
         }]
     }
-  return (
-    <Row xs={1} md={3} className="pt-4 pb-3 flex-container space-between">
-      <Card className="">
-        <Card.Body>
-          <Card.Title>Task Completed</Card.Title>
-          <h1 className="text-primary" style={{ float: "left" }}>
-            {userTasks.filter(x=>x?.isDone).length}
-          </h1>
-          <span className="pt-3">/{userTasks?.length ?? 0}</span>
-        </Card.Body>
-      </Card>
+    return (
+      <h2>Dash 3</h2>
+    )
+  // return (
+  //   <Row xs={1} md={3} className="pt-4 pb-3 flex-container space-between">
+  //     <Card className="">
+  //       <Card.Body>
+  //         <Card.Title>Task Completed</Card.Title>
+  //         <h1 className="text-primary" style={{ float: "left" }}>
+  //           {userTasks.filter(x=>x?.isDone).length}
+  //         </h1>
+  //         <span className="pt-3">/{userTasks?.length ?? 0}</span>
+  //       </Card.Body>
+  //     </Card>
       
-      <Card className="">
-        <Card.Body>
-          <Card.Title>Latest Created Tasks</Card.Title>
-          <ul>
-            {userTasks.sort((a,b)=>(new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 3).map((x) => (
-              <li>{x?.isDone? <del>{x?.name}</del>:x?.name}</li>
-            ))}
-          </ul>
-        </Card.Body>
-      </Card>
+  //     <Card className="">
+  //       <Card.Body>
+  //         <Card.Title>Latest Created Tasks</Card.Title>
+  //         <ul>
+  //           {userTasks.sort((a,b)=>(new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 3).map((x) => (
+  //             <li>{x?.isDone? <del>{x?.name}</del>:x?.name}</li>
+  //           ))}
+  //         </ul>
+  //       </Card.Body>
+  //     </Card>
 
-      <Card className=" p-1">
-        <CanvasJSChart options = {options} />
-      </Card>
-    </Row>
-  );
+  //     <Card className=" p-1">
+  //       <CanvasJSChart options = {options} />
+  //     </Card>
+  //   </Row>
+  // );
 };

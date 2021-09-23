@@ -9,7 +9,6 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
 import { MdDelete, MdEdit } from "react-icons/md";
 
 const useStyles = makeStyles((theme) => ({
@@ -90,12 +89,14 @@ export default function DashList({ user, userTasks, setUserTasks, q, setId, setA
       </ListItem>
     );
   })
-
   return (
-    <Card className="p-2">
-      <List className={classes.root+" p-0 m-0"}>
-        {taskList}
-      </List>
-    </Card>
-  );
+    <h2>Dash List</h2>
+  )
+  // return (
+  //   <Card className="p-2">
+  //     <List className={classes.root+" p-0 m-0"}>
+  //       {taskList}
+  //     </List>
+  //   </Card>
+  // );
 }
